@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>local.hidutil.Dell-KB216</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/xpc_set_event_stream_handler</string>
+		<string>/usr/bin/hidutil</string>
+		<string>property</string>
+		<string>--matching</string>
+		<string>{"ProductID":0x2113,"VendorID":0x413c}</string><!--hidutil match PID 0x2113 VID 0x413c-->
+		<string>--set</string>
+		<string>{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000065,"HIDKeyboardModifierMappingDst":0x7000000E6},{"HIDKeyboardModifierMappingSrc":0x700000049,"HIDKeyboardModifierMappingDst":0x70000006b},{"HIDKeyboardModifierMappingSrc":0x7000000e2,"HIDKeyboardModifierMappingDst":0x7000000e3},{"HIDKeyboardModifierMappingSrc":0x7000000e3,"HIDKeyboardModifierMappingDst":0x7000000e2},{"HIDKeyboardModifierMappingSrc":0x7000000e6,"HIDKeyboardModifierMappingDst":0x7000000e7}]}</string>
+	</array>
+        <key>LaunchEvents</key>
+        <dict>
+                <key>com.apple.iokit.matching</key><!--event stream name, must be com.apple.iokit.matching or com.apple.notifyd.matching-->
+                <dict>
+                        <key>Dell-KB216</key><!--arbitrary id string for this event, see 'xpc_dictionary_get_string' and the constant 'XPC_EVENT_KEY_NAME'-->
+                        <dict>
+                                <key>idProduct</key>
+                                <integer>8467</integer><!--PID 0x2113-->
+                                <key>idVendor</key>
+                                <integer>16700</integer><!--VID 0x413c-->
+                                <key>IONameMatch</key>
+                                <string>IOHIDInterface</string>
+                                <key>IOMatchLaunchStream</key><!--IOMatchLaunchStream is required for iokit matching events-->
+                                <true/>
+                        </dict>
+                </dict>
+        </dict>
+	<key>StandardErrorPath</key>
+	<string>/dev/null</string>
+	<key>StandardOutPath</key>
+	<string>/dev/null</string>
+</dict>
+</plist>
